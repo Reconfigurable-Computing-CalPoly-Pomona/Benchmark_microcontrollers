@@ -49,16 +49,16 @@ float Array_C [5][5] = {
 {1,2,3,4,5}};
  
  
-//void initializeMC();
-//void TIMER_RESET();
-//void __interrupt() ISR(void);
-//void PingIO();
-//void add(int A, int B);
-//void mult(int A, int B);
-//void div(int A, int B);
-//void Shift(int A, int B);
-//void ArrayMath(int A);
-//unsigned int TimerCurrent();
+void initilaizeMC();
+void TIMER_RESET();
+void __ISR() ISR(void);
+void PingIO();
+void FPadd(float A, float B);
+void FPmult(float A, float B);
+void FPdiv(float A, float B);
+void Shift(int A, int B);
+void FPArrayMath(float A);
+unsigned int TimerCurrent();
  
 //NEEDS YOUR REGISTERS//
 void initializeMC(){ //sets MC Ports and Registers to proper values
@@ -70,19 +70,10 @@ void initializeMC(){ //sets MC Ports and Registers to proper values
     PR1 = 65535;              // Load period register
     T1CONbits.TCS = 0;
     T1CONbits.TCKPS = 0;
-    //IPC2bits.T1IP = 7;
     // Reset the Timer 1 interrupt flag
     IFS0bits.T1IF = 0;
     // Enable interrupts from Timer 1
     IEC0bits.T1IE = 1;
-
-
- 
-    // //for PIC32MC230F064B
-    // you will need to:
-    // choose a port and pin to act as an output
-    // set the timer to start at 0 and count to max, counting every cycle
-    // enable interrupts, clear any flags
 }
  
 void TIMER_RESET(){

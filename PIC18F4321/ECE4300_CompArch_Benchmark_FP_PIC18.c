@@ -1,6 +1,5 @@
 //uses 5660 bytes of Program Memory
 
-//[uncomment areas for your microcontroller]
 //for PIC18F4321
 #include <PIC18F4321.h> //include necessary header
 #pragma config OSC = INTIO2 //selects default oscillator, use the fastest one at the fastest setting
@@ -17,49 +16,7 @@
 #define TIMER_FLAG  PIR1bits.TMR1IF //this is the interrupt flag raised whenever the timer has overflowed. If the timer has overflowed, this means the microcontroller has taken more than TIMER_MAX cycles to complete the benchmark
 #define OSC_SpeedM 8 //in Megahertz (if 500kHz -> 0.5; if 5GHz, 5000) this is not used in the benchmark but will be used in the report and hand calculations
 
-//you will need to do the same for your microcontroller
-
-// //for PIC12F1822
-// #include <PIC12F1822.h>
-// needs oscillator select
-// #pragma config WDTE = 0x00; //disables watchdog timer
-// #pragma config BOREN = 0x00; //disables brown out rest
-// initialize interrupt???
-// #define TIMER_MAX = ???
-// #define IO_Output = ???
-// #define TIMER_CONTROL = ???
-// #define TIMER_START = ???
-// #define TIMER_STOP = ???
-// #define TIMER_FLAG = ???
-// #define OSC_SpeedM = ???
-
-// //for PIC32MC230F064B
-// #include <p32mx230f064b.h>
-// needs oscillator select
-// #pragma config FWDTEN = OFF //disables watchdog timer
-// initialize interrupt???
-// #define TIMER_MAX = ???
-// #define IO_Output = ???
-// #define TIMER_CONTROL = ???
-// #define TIMER_START = ???
-// #define TIMER_STOP = ???
-// #define TIMER_FLAG = ???
-// #define OSC_SpeedM = ???
-
-// //for ESP8266EX
-// needs header file
-// needs oscillator select
-// needs watchdog timer disable
-// initialize interrupt???
-// #define TIMER_MAX = ???
-// #define IO_Output = ???
-// #define TIMER_CONTROL = ???
-// #define TIMER_START = ???
-// #define TIMER_STOP = ???
-// #define TIMER_FLAG = ???
-// #define OSC_SpeedM = ???
-
-///--------------Values for all devices---------------//
+//--------------Values for all devices---------------//
 
 // To retrieve the benchmark results, we use the IDE to watch our variable values after the benchmark has been completed.
 // We will not be using any external hardware other than what is require to program the MC (no 7segment or LCD).
@@ -116,24 +73,6 @@ void initializeMC(){ //sets MC Ports and Registers to proper values
     INTCONbits.PEIE = 1;    // enables peripheral interrupt 
     PIE1 = 0x01; //enables timer1 interrupt flag
     PIR1bits.TMR1IF=0;      // Clears the interrupt flag for Timer 1
-
-    // //for PIC12F1822
-    // you will need to:
-    // choose a port and pin to act as an output
-    // set the timer to start at 0 and count to max, counting every cycle
-    // enable interrupts, clear any flags
-
-    // //for PIC32MC230F064B
-    // you will need to:
-    // choose a port and pin to act as an output
-    // set the timer to start at 0 and count to max, counting every cycle
-    // enable interrupts, clear any flags
-
-    // //for ESP
-    // you will need to:
-    // choose a port and pin to act as an output
-    // set the timer to start at 0 and count to max, counting every cycle
-    // enable interrupts, clear any flags
 }
 
 //NEEDS YOUR REGISTERS//
@@ -141,15 +80,6 @@ void TIMER_RESET(){
     //for PIC18F4321
     TMR1H = 0x00;
     TMR1L = 0x00;
-
-    // //for PIC12F1822
-    // reset timer values back to 0
-
-    // //for PIC32MC230F064B
-    // reset timer values back to 0
-
-    // //for ESP8266EX
-    // reset timer values back to 0
 }
 
 //MAY NEED CHANGE//
@@ -167,15 +97,6 @@ void __interrupt() ISR(void) {  //interrupt service routine. Counts the number o
 unsigned int TimerCurrent(){
     //for PIC18F4321
     unsigned int timerValue = {(TMR1H<<8)| TMR1L}; //adds both registers to make single value
-
-    // //for PIC12F1822
-    // retrieve timer values, concatenate
-
-    // //for PIC32MC230F064B
-    // retrieve timer values, concatenate
-
-    // //for ESP8266EX
-    // retrieve timer values, concatenate
 
     return timerValue;
 }
