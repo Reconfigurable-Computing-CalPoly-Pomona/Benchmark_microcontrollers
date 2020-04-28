@@ -79,7 +79,7 @@ void initializeMC(){ //sets MC Ports and Registers to proper values
     PORTA = 0x00; //clears PORTA //we will be using PORTA, Pin 0 [A0] for IO Test
     TMR1H = 0x00; //set up the timer for the idle count up to 65,535?
     TMR1L = 0x00;
-    T1CONbits.TMR1CS = 0;  //sets timer1 to count every instruction cycle [we may need to change the timer to increment at an external clock source. find the control register for this as well but do not enable]
+    T1CONbits.TMR1CS = 1;  //sets timer1 to count every instruction cycle [we may need to change the timer to increment at an external clock source. find the control register for this as well but do not enable]
     INTCONbits.GIE = 1; //enables global interrupts, all interrupts enabled
     INTCONbits.PEIE = 1;    // enables peripheral interrupt
     PIE1 = 0x01; //enables timer1 interrupt flag
