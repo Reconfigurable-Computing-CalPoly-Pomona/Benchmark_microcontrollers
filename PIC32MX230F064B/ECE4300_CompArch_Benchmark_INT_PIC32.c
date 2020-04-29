@@ -179,8 +179,8 @@ void ArrayMath(int A){
    for (i = 0; i < 5; i++){ //cross the values
            for(j = 0; j < 5;  j++){
                C = Array_C[i][j];
-               Array_C[j][i] = C;
                Array_C[i][j] = Array_C[j][i];
+               Array_C[j][i] = C;
            }
    }
     TIMER_CONTROL = 0; //stops timer

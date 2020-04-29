@@ -1,7 +1,12 @@
 #include <ESP8266WiFi.h>
 
 //int a = 5, b = 255;
-float a = 5.05, b = 255.0255;
+float a = 5.05, b = 255.0255,  result = 0.0;
+float Array_A [10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+float Array_C [5][5] = {
+  {1,2,3,4,5}, {1,2,3,4,5},
+  {1,2,3,4,5}, {1,2,3,4,5},
+  {1,2,3,4,5}};
 
 void setup() {
   // put your setup code here, to run once:
@@ -41,9 +46,8 @@ void toggle()
   Serial.println();
 }
 
-void add(int a, int b)
+void add(float a, float b)
 {
-  float result = 0.0;
   float timerStart = 0.0, timerEnd = 0.0;
   double resultTime = 0.0;
   
@@ -59,9 +63,8 @@ void add(int a, int b)
   Serial.println();
 }
 
-void multiply(int a, int b)
+void multiply(float a, float b)
 {
-  float result = 0.0;
   float timerStart = 0.0, timerEnd = 0.0;
   double resultTime = 0.0;
 
@@ -77,9 +80,8 @@ void multiply(int a, int b)
   Serial.println();
 }
 
-void divide(int a, int b)
+void divide(float a, float b)
 {
-  float result = 0.0;
   float timerStart = 0.0, timerEnd = 0.0;
   double resultTime = 0.0;
 
@@ -95,9 +97,8 @@ void divide(int a, int b)
   Serial.println();
 }
 
-void Shift(int A, int B)
+void Shift(float A, float B)
 {
-  float result = 0.0;
   float timerStart = 0.0, timerEnd = 0.0;
   double resultTime = 0.0;
   
@@ -113,16 +114,11 @@ void Shift(int A, int B)
   Serial.println();
 }
 
-void ArrayMath(int A)
+void ArrayMath(float A)
 {
   float result = 0.0;
   float timerStart = 0.0, timerEnd = 0.0;
   double resultTime = 0.0;
-  int Array_A [10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-  int Array_C [5][5] = {
-  {1,2,3,4,5}, {1,2,3,4,5},
-  {1,2,3,4,5}, {1,2,3,4,5},
-  {1,2,3,4,5}};
   
   timerStart = timer1_read();
   for (int i = 0; i < 10; i++){ //populate Arrays
@@ -137,9 +133,9 @@ void ArrayMath(int A)
   
   for (int i = 0; i < 5; i++){ //cross the values
          for(int j = 0; j < 5;  j++){
-             result = Array_C[i][j];
-             Array_C[j][i] = result;
-             Array_C[i][j] = Array_C[j][i];
+               C = Array_C[i][j];
+               Array_C[i][j] = Array_C[j][i];
+               Array_C[j][i] = C;
          }
   }
   timerEnd = timer1_read();
