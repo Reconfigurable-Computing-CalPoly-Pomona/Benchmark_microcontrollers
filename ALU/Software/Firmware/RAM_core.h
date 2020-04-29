@@ -5,7 +5,6 @@
  *      Author: Dominic
  */
 
-//does not function. The HDL test bench works but this does not. Requires more work.
 
 #ifndef _RAM_H_INCLUDED
 #define _RAM_H_INCLUDED
